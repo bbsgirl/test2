@@ -25,7 +25,7 @@ ${id}님이 입장하였습니다.<br>
 				<td>${bean.id}</td>
 				<td>${bean.content}</td>
 				<td>${bean.day}</td>
-				<td><a href="delete?no=${bean.no}"><input type="button" value="삭제"></a>
+				<td><a href="delete?no=${bean.no}"><input type="button" value="삭제"></a><!--jsp 값을 보내기   -->
 				<td><a href="goupdate?no=${bean.no}&content=${bean.content}"><input type="button" value="수정"></td>
 			</tr>
 		</c:forEach>
