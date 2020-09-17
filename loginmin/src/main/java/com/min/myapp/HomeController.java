@@ -41,6 +41,7 @@ public class HomeController {
 	
 	@RequestMapping("/main")
 	public String main(Model model) {
+		//값을 보내기 위해서는 model이 필요하다
 		
 		//메인 뿌린다 
 		boardminDto[] list = dao.getAll();
@@ -50,21 +51,21 @@ public class HomeController {
 		return "main";
 	}
 	//회원가입========================================
-	@RequestMapping("/goInsert")
+	@RequestMapping("/goInsert")//주소줄에 치며는 넘어간다 
 	public String insert() {
-		return "insert";
+		return "insert";//인설트라는 jsp로
 	}
-	@RequestMapping("/insert")
-	public String insert(beanDto beanDto) {
+	@RequestMapping("/insert")//거기서 치고 값을 넘긴다 
+	public String insert(beanDto beanDto) {//폼에 담긴것 담는다
 		dao.insert(beanDto);
-		return "redirect:main";
+		return "redirect:main";//담는거만한다
 	}
 	//게시물등록====================================
 	@RequestMapping("/gob_insert")
 	public String b_insert() {
 		return "b_insert";
 	}
-	@RequestMapping("/b_insert")
+	@RequestMapping("/b_insert")//값이 넘어오니까 
 	public String b_insert(beanDto beanDto ,boardminDto boardminDto) {
 		dao.b_insert(beanDto, boardminDto);
 		return "redirect:main";
@@ -75,7 +76,7 @@ public class HomeController {
 		return "login";
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("/login")//세션까지 만들엇다 
 	public String login(beanDto beanDto , Model model) {
 		
 //		model.addAttribute("login",dao.get(new beanDto(String id)));
@@ -85,20 +86,21 @@ public class HomeController {
 		return "redirect:main";
 	}
 	//삭제======================================
-	@RequestMapping("/delete")
-	public String delete(int no) {
+	@RequestMapping("/delete")//삭제는 넘버 숫자만 받아온다
+	public String delete(int no) {// a href로한것을 받아온다  그숫자를 삭제하기위해서
 		
 		dao.delete(no);
 		
 		return "redirect:main";
 	}
 	//수정=======================================
-	@RequestMapping("/goupdate")
-	public String update(boardminDto boardminDto, Model model) {
+	@RequestMapping("/goupdate")//여기로 오는건 수정하기위해서 일단 값을 가져오는곳이다
+	//수정도 수정하는것에서 다른곳에서 옮겨서 거기서 수정하고 다시 그값을 보낸ㄴ다
+	public String update(boardminDto boardminDto, Model model) {//가져온값을 모델에 담아서 수정jsp로 보낸다 
 		model.addAttribute("bean",boardminDto);
 		return "update";
 	}
-	@RequestMapping("/update")
+	@RequestMapping("/update")//받은것을 다시 보낸다 
 	public String update(String content , int no) {
 		dao.update(content, no);
 		return "redirect:main";
