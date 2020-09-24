@@ -18,7 +18,7 @@ insert
 		<input type="hidden" name="gender" value="${gender}"><!-- 젠더를 받아서  보낸다  -->
 	</tr>
 	<tr>
-		<td><input type="submit" value="확인"></td>
+		<td><input type="submit" value="확인"></td><td><a href="main"><input type="button" value="취소"></a></td>
 	</tr>
 </table>
 </form>
