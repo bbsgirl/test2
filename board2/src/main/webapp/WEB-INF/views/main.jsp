@@ -15,8 +15,10 @@ ${id}님이 입장하였습니다.<br>
 
 메인~~~<br>
 
-
-
+<a href="goregister"><input type="button" value="회원가입"></a>
+<a href="gologin"><input type="button" value="로그인"></a>
+<a href="goinsert"><input type="button" value="게시판"></a>
+<br>
 <table border="1">
 	<tr>
 		<td>no</td><td>id</td><td>gender</td><td>content</td><td>day</td><td>수정</td><td>삭제</td>
@@ -32,6 +34,30 @@ ${id}님이 입장하였습니다.<br>
 			<td><a href="delete?no=${bean.no}"><input type="button" value="삭제"></a></td>
 		</tr>
 	</c:forEach>
+	<tr>
+		<td colspan="2">
+				<c:forEach var="i" begin="1" end="${pageCount }" step="1">
+					<c:choose>
+						<c:when test="${i eq pageNum }">
+							[${i}]
+						</c:when>
+					
+						<c:otherwise>
+							<a href="main?pageNum=${i}">[${i}]</a>
+						</c:otherwise>
+					
+					
+					</c:choose>
+				
+				
+				</c:forEach>
+		
+		
+		</td>
+	
+	</tr>
+	
+	
 </table>
 
 </body>
