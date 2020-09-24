@@ -18,11 +18,14 @@ login
 	
 	</tr>
 	<tr>
-		<td><input type="submit" value="확인"></td><td><input type="button" onclick="c()"></td>
+		<td><input type="submit" value="확인"></td><td><a href="main"><input type="button" value="취소"></a></td>
 	</tr>
 </table>
 
 </form>
+
+
+
 
 </body>
 </html>
