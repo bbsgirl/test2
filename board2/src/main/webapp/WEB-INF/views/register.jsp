@@ -23,7 +23,7 @@ regisert
 		<tr>
 			<td>gender</td>
 			<td>
-				<select name="gender">
+				<select name="gender"><!-- 셀렉트로  보낼때는 안에 value값이 넘어간다 -->
 					
 						<option value="f">f</option>
 						<option value="m">m</option>
@@ -32,7 +32,7 @@ regisert
 			</td>
 		</tr>
 		<tr>
-			<td><input type="submit" value="확인"></td>
+			<td><input type="submit" value="확인"></td><td><a href="main"><input type="button" value="취소"></a></td>
 		</tr>
 		
 	</table>
