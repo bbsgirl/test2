@@ -35,6 +35,9 @@ public class boardDao {
 	@Value("#{sql['board.boardBean']}")
 	public String boardBean;
 	
+	@Value("#{sql['border.getCount']}")
+	private String getCount;
+	
 	
 	public int delete(boardBean boardBean) {
 		
@@ -60,10 +63,10 @@ public class boardDao {
 	}
 	  
 	
-	public int register(memberBean memberBean) {
-		int result = 0;
-		result = jdbcTmp.update(register, memberBean.getId(), memberBean.getPw() ,memberBean.getName() , memberBean.getGender()+"");
-		return result;
+	public int register(memberBean memberBean) {//id pw name gender가 넘어온다 
+		int result = 0;// 인트로 
+		result = jdbcTmp.update(register, memberBean.getId(), memberBean.getPw() ,memberBean.getName() , memberBean.getGender());
+		return result;//등록완료
 	}
 	
 	public int insert(memberBean memberBean, boardBean boardBean) {
@@ -72,16 +75,23 @@ public class boardDao {
 	}
 
 	//보더를 전체를 가져오기
-	public boardBean[] getAll() {
+	public boardBean[] getAll(int start , int count) {
 		
 		//query는 전체를 가져온다
 		//queryforint는 int 형태롤 가져온다
 		//queryforobject는 한줄가져올때 사용한다
 		
+		boardBean [] bean =jdbcTmp.query(boardBean, new Integer[] {start, count}, new boardMapper()).toArray(new boardBean[0]);
 		
-		return jdbcTmp.query(boardBean, new boardMapper()).toArray(new boardBean[0]);
+		return bean;
 		
 	}
+	
+	public int getCount() {//페이지만들때
+		return jdbcTmp.queryForInt(getCount);
+	}
+	
+	
 	class boardMapper implements RowMapper<boardBean>{
 
 		@Override
