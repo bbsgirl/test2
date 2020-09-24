@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * Handles requests for the application home page.
@@ -45,24 +47,40 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/main")
-	public String main(Model model) {
+	public String main(@RequestParam(value="pageNum", required=false, defaultValue="1")String strNum, Model model) {
+		int pageNum =Integer.parseInt(strNum);
+		System.out.println(pageNum+"::::pageNum");
 		
-		boardBean[] list = dao.getAll();
+		int borderPerPage=3;
+		
+		//가로의 갯수나열
+		boardBean[] list = dao.getAll((pageNum-1)*borderPerPage, borderPerPage);//쿼리에 들어가는것
 		model.addAttribute("list",list);
+		
+		int count = dao.getCount();
+		int pageCount =count/borderPerPage;
+		if(count%borderPerPage > 0) {
+			pageCount++;
+		}
+		
+		model.addAttribute("pageCount",pageCount);
+		model.addAttribute("pageNum", pageNum);
+		
+		
 		
 		return "main";
 		
 		
 	}
 	
-	@RequestMapping("/goregister")//회원가입하러가기
+	@RequestMapping("/goregister")//회원가입 페이지 이동
 	public String register() {
 		return "register";
 		
 	}
 	
 	
-	@RequestMapping("/register")
+	@RequestMapping("/register")//회원가입 등록
 	public String register(memberBean memberBean) {
 		
 		dao.register(memberBean);
@@ -73,26 +91,31 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping("/gologin")
+	@RequestMapping("/gologin")//로그인페이지 이동
 	public String login() {
 		
 		return "login";
 	}
 	
-	@RequestMapping("/login")
-	public String login(memberBean memberBean,Model model) {
+	@RequestMapping("/login")//로그인 
+	public RedirectView login(memberBean memberBean,Model model) {
 		memberBean result=dao.login(memberBean);// 한줄가져온것을 int나 bean에 담을수잇는데 지금은 빈에 담앗다 
 		String go = "gologin";//기본으로 고로그인으로 간다
 		
 		if(result.getId()==null) {
 			System.out.println("로그인 실패");
 		}else {
-			go="redirect:main";//빠져나가면서 들어간다
+			
 			System.out.println("로그인 성공");
 			model.addAttribute("id",result.getId());//각각보낸다
-			model.addAttribute("gender",result.getGender());
+			model.addAttribute("gender",result.getGender());// 로그인할때 보내준다
+			
+			
 		}
-		return go;
+		RedirectView rv = new RedirectView("main");//메인으로 간다
+		rv.setExposeModelAttributes(false);
+		
+		return rv;
 	}
 	
 	@RequestMapping("/goinsert")
@@ -103,14 +126,15 @@ public class HomeController {
 	
 	
 	@RequestMapping("/insert")
-	public String insert(memberBean memberBean, boardBean boardBean, Model model) {
+	public RedirectView insert(memberBean memberBean, boardBean boardBean, Model model) {
+		
 		
 		
 		dao.insert(memberBean, boardBean);
-		
-		
-		
-		return "redirect:main";
+		RedirectView rv = new RedirectView("main");//메인으로 간다
+		rv.setExposeModelAttributes(false);
+				
+		return rv;
 	}
 	
 	
