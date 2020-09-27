@@ -38,6 +38,16 @@ public class boardDao {
 	@Value("#{sql['border.getCount']}")
 	private String getCount;
 	
+	@Value("#{sql['border.registerck']}")
+	private String registerck;
+	
+	
+	public int registerck(String id) {
+		int result = 0;
+		
+		return result = jdbcTmp.queryForInt(registerck, id);
+	}
+	
 	
 	public int delete(boardBean boardBean) {
 		
