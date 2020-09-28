@@ -38,6 +38,65 @@ public class playerDao {
 	@Value("#{sql['player.playerwvgetAllDate']}")
 	public String playerwvgetAllDate;
 	
+	@Value("#{sql['player.registerfly']}")
+	public String registerfly;
+	
+	@Value("#{sql['player.registerwv']}")
+	public String registerwv;
+	
+	@Value("#{sql['player.registerheavy']}")
+	public String registerheavy;
+	
+	@Value("#{sql['player.registerlight']}")
+	public String registerlight;
+	
+	@Value("#{sql['player.playersearch']}")
+	public String playersearch;
+	
+	public playerBean playersearch(String grade , String n) {
+		
+		System.out.println("g"+grade);
+		System.out.println("n"+n);
+		
+		playerBean result = jdbcTmp.queryForObject(playersearch, new String[] {grade , n} , new playerMapper());
+		
+		System.out.println(result+"::::result");
+		
+		return result;
+	}
+	
+	public int registerlight(playerBean playerBean) {
+		int result=0;
+		result = jdbcTmp.update(registerlight,  playerBean.getName(), playerBean.getAge(), playerBean.getNationality(), playerBean.getHeight(), playerBean.getWeight(), playerBean.getWin(), playerBean.getLose());
+		
+		return result;
+	}
+	
+	
+	public int registerheavy(playerBean playerBean) {
+		int result=0;
+		result = jdbcTmp.update(registerheavy,  playerBean.getName(), playerBean.getAge(), playerBean.getNationality(), playerBean.getHeight(), playerBean.getWeight(), playerBean.getWin(), playerBean.getLose());
+		
+		return result;
+	}
+	
+	public int registerwv(playerBean playerBean) {
+		int result= 0;
+		result = jdbcTmp.update(registerwv,  playerBean.getName(), playerBean.getAge(), playerBean.getNationality(), playerBean.getHeight(), playerBean.getWeight(), playerBean.getWin(), playerBean.getLose());
+		
+		return result;
+	}
+	
+	
+	public int registerfly(playerBean playerBean) {
+		int result = 0;
+		
+		result= jdbcTmp.update(registerfly, playerBean.getName(), playerBean.getAge(), playerBean.getNationality(), playerBean.getHeight(), playerBean.getWeight(), playerBean.getWin(), playerBean.getLose());
+		
+		return result;
+		
+	}
+	
 	
 	public playerBean[] playerflygetAllDate(playerBean playerBean) {
 		
