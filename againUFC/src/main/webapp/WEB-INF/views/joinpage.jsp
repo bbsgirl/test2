@@ -332,7 +332,7 @@
     <div id = "wrap">
         <section>
             <article>
-               <form action = "Joinok.do" method = "post" accept-charset = "utf-8" name = "frm">
+               <form action = "join" method = "post" accept-charset = "utf-8" name = "frm">
                     <table>
                         <br>
                         <b>회원가입</b><br><br>
