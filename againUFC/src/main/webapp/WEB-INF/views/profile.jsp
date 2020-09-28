@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-      
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>       
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -234,19 +234,24 @@ String gradechk = (String)session.getAttribute("admin");
    
     <div id="wrap">
           <header>
-          	<% if(session.getAttribute("id") == null){ %>
-				
-            <% }else{%>
-            	<span id = "info"><%= grade %><%=session.getAttribute("name")%>님 환영합니다!</span>
-            <%   if(gradechk.equals("admin")){ %>
-				<button id = "admin" onclick = "admin()">경기 등록</button>
-				<button id = "admin" onclick = "admin2()">선수 등록</button>
-           	<% 	}else{ %>
-           		<button id = "mypage" onclick = "mypage()">마이 페이지</button>
-           	<%	} %>
-				<button id = "change" onclick = "change()">회원정보 수정</button>
-				<button id = "logout" onclick = "logout()">로그아웃</button>
-            <% } %>
+          	 <c:choose>
+           		<c:when test="${empty name }">
+           			<button id = "login" onclick = "login()">로그인</button>
+					<button id = "join" onclick = "join()">회원가입</button>
+           		</c:when>
+           		<c:otherwise>
+           				<span id = "info">${admin}/${name}님 환영합니다!</span>	
+           			<c:if test="${admin eq '(관리자) '}">
+		          		<button class = "admin" onclick = "admin()">경기 등록</button>
+						<button class = "admin" onclick = "admin2()">선수 등록</button>
+					</c:if>	
+           		    <c:if test="${admin ne '(관리자) '}">
+	           			<button id = "mypage" onclick = "mypage()">마이 페이지</button>
+					</c:if>           	
+						<button id = "change" onclick = "change()">회원정보 수정</button>
+						<button id = "logout" onclick = "logout()">로그아웃</button>
+           		</c:otherwise>
+           </c:choose>
         </header>
         <nav>
             <ul>
