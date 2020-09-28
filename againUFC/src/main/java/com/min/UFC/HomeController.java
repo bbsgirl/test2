@@ -149,17 +149,43 @@ public class HomeController {
 		return "flyplayer";
 	}
 	
+	@RequestMapping("registerfly")
+	public String registerfly(playerBean playerBean) {
+		
+		P_dao.registerfly(playerBean);
+		
+		return "flyplayer";
+	}
+	
+	
 	@RequestMapping("golightplayer")
 	public String lightplayer() {
 		
 		return "lightplayer";
 	}
 	
+	@RequestMapping("registerlight")
+	public String registerlight(playerBean playerBean){
+		P_dao.registerlight(playerBean);
+		
+		return "lightplayer";
+	}
+	
 	@RequestMapping("goheavyplayer")
 	public String heavyplayer() {
+	
+		return "heavyplayer";
+	}
+	
+	
+	@RequestMapping("registerheavy")
+	public String registerheavy(playerBean playerBean) {
+		
+		P_dao.registerheavy(playerBean);
 		
 		return "heavyplayer";
 	}
+	
 	
 	@RequestMapping("gowvplayer")
 	public String wvplayer() {
@@ -167,6 +193,34 @@ public class HomeController {
 		return "wvplayer";
 	}
 	
+	@RequestMapping("registerwv")
+	public String registerwv(playerBean playerBean) {
+		
+		P_dao.registerwv(playerBean);
+		
+		return "wvplayer";
+		
+	}
+	
+	@RequestMapping("playersearch")
+	public String playersearch(String grade , String n ,playerBean playerBean , Model model) {
+		
+		System.out.println(grade+"::grade");
+		System.out.println(n+":::n");
+		playerBean result = P_dao.playersearch(grade , n);
+		
+		System.out.println(result+"::result");
+		
+		model.addAttribute("playername", result.getName());
+		model.addAttribute("playerage", result.getAge());
+		model.addAttribute("playernationlity", result.getNationality());
+		model.addAttribute("playerheight", result.getHeight());
+		model.addAttribute("playerweight", result.getWeight());
+		model.addAttribute("playerwin", result.getWin());
+		model.addAttribute("playerlose", result.getLose());
+		
+		return "profile2";
+	}
 	
 	
 	@RequestMapping("rank")
@@ -185,6 +239,15 @@ public class HomeController {
 		
 		
 		return "projectranking";
+	}
+	
+	
+	
+	@RequestMapping("Match")
+	public String match() {
+		
+		return "ticket";
+		
 	}
 	
 	
