@@ -3,6 +3,7 @@
 <%@page import="java.util.Vector"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -220,41 +221,32 @@
 </style>
 </head>
 <body>
-<%
-String grade = "";
-String gradechk = (String)session.getAttribute("admin");
-	if(session.getAttribute("id") != null){
-		if(gradechk.equals("no")){
-			grade = "";
-		}else{
-			grade = "(관리자) ";
-		}
-	}
 
-%>
  <header>
-		 	<% if(session.getAttribute("id") == null){ %>
-				<script>
-	  	   			alert("로그인시 이용할수있습니다"); //아이디가없으면 메인으로돌아간다
-	  	   			location.href = "*.do";
-	  	   		</script>
-            <% }else{%>
-            	<span id = "info"><%= grade %><%=session.getAttribute("name")%>님 환영합니다!</span>
-            <%   if(gradechk.equals("admin")){ %>
-				<button id = "admin" onclick = "admin()">경기 등록</button>
-				<button id = "admin" onclick = "admin2()">선수 등록</button>
-           	<% }else{ %>
-       			<button id = "mypage" onclick = "mypage()">마이 페이지</button>
-       		<%	} %>
-				<button id = "change" onclick = "change()">회원정보 수정</button>
-				<button id = "logout" onclick = "logout()">로그아웃</button>
-            <% } %>
+		  <c:choose>
+		 		<c:when test="${empty name }">
+					<button id = "login" onclick = "login()">로그인</button>
+					<button id = "join" onclick = "join()">회원가입</button>
+				</c:when>
+				<c:when test="${not empty name }">
+	            		<span id = "info">${admin}${name}님 환영합니다!</span>
+	            	<c:if test="${admin eq '(관리자) '}">
+		          		<button class = "admin" onclick = "admin()">경기 등록</button>
+						<button class = "admin" onclick = "admin2()">선수 등록</button>
+					</c:if>	
+	           		<c:if test="${admin ne '(관리자) '}">
+	           			<button id = "mypage" onclick = "mypage()">마이 페이지</button>
+					</c:if>           	
+						<button id = "change" onclick = "change()">회원정보 수정</button>
+						<button id = "logout" onclick = "logout()">로그아웃</button>
+            	</c:when>
+            </c:choose>
 </header>
          <nav>
             <ul>
                 <li id="ranksite">Ranking</li>
 	            <li id="matchsite">Match</li>
-	            <li><img src = "img/logo2.png" id = "logo"></li>
+	            <li><img src = "resources/img/logo2.png" id = "logo"></li>
 	            <li id="shopsite">Shop</li>
 	            <li id="videosite">Video</li>
             </ul>
@@ -274,7 +266,7 @@ String gradechk = (String)session.getAttribute("admin");
 	for(int i=0;i<v.size();i++){
 		if(v.get(i).getIsfinish().equals("running")){%>
              <div class="game_img">
-				<img src="img/<%=v.get(i).getG_img()%>.png" alt="이미지x" class="img" >
+				<img src="resources/img/<%=v.get(i).getG_img()%>.png" alt="이미지x" class="img" >
 			</div>
 			<table>
 			<tr>
@@ -300,7 +292,7 @@ String gradechk = (String)session.getAttribute("admin");
 	<% }else{ %>
 <script>
        alert("로그인시 이용할 수 있습니다.");
-       location.href = "Main.do";
+       location.href = "mainpage";
 </script>      
        <%  } %>
 
@@ -308,58 +300,56 @@ String gradechk = (String)session.getAttribute("admin");
 	</section>
        <!--  <footer> -->
             <div id="bottom">
-	            <img src="img/logo2.png"><br>
+	            <img src="resources/img/logo2.png"><br>
 	            <div class="bot1">Privacy Policy </div>  
 	            <div class="bot1">Terms of Use </div><br>
 	            <div id="g">대표:민병진 <br> 주소:부산광역시 부산진구<br>저작권 ⓒ2001-ufc판권소유</div>
-			 	<p><img src="img/f.png" id="f"><img src="img/t.png" id="t"><img src="img/u.png" id="u"></p>
+			 	<p><img src="resources/img/f.png" id="f"><img src="resources/img/t.png" id="t"><img src="resources/img/u.png" id="u"></p>
          	</div>
         <!-- </footer> -->
 </body>
 <script>
 	function gogo(idx){
-		location.href="TicketAdd.do?idx="+idx;
+		location.href="TicketAdd?idx="+idx;
 	}
 	
 	function mypage(){
-		location.href="MemberMyPage.do";
+		location.href="gomemberMyPage";
 	}
 	
 	function logout(){
-		location.href = "Logout.do";
+		location.href = "gologout";
 	}
 	function change(){
-		location.href = "Change.do";
+		location.href = "Change";
 	}
-	function mypage(){
-		location.href = "MemberMyPage.do";
-	}
+	
 	function admin(){
-		location.href = "Admin.do";
+		location.href = "goadmin";
 	}
 	function admin2(){
-		location.href = "Admin2.do";
+		location.href = "goadmin2";
 	}
 	$("#ranksite").click(function(){
-		location.href="rank.do";
+		location.href="rank";
 		
 	});
 	
 	$("#matchsite").click(function(){
-		location.href = "Match.do";
+		location.href = "Match";
 	});
 		
 	$("#videosite").click(function(){
-		location.href="video.do";
+		location.href="video";
 	
 	});
 
 	$("#shopsite").click(function(){
-		location.href="Cap.do";
+		location.href="Cap";
 	
 	});
 	$("#logo").click(function(){
-		location.href = "Main.do";
+		location.href = "Main";
 	});
 </script>
 </html>
