@@ -178,7 +178,7 @@
             <ul>
                 <li id="ranksite">Ranking</li>
                 <li id="matchsite">Match</li>
-                <li><img src = "img/logo2.png" id = "logo"></li>
+                <li><img src = "resources/img/logo2.png" id = "logo"></li>
                 <li id="shopsite">Shop</li>
                 <li id="videosite">Video</li>
             </ul>
@@ -243,6 +243,7 @@
 			}else if(frm.lose.value.trim().length==0){
 				alert("패 입력되지않았습니다.");
 			}else{
+				alert("선수등록 완료");
 				frm.submit();
 			}
 		}
@@ -290,7 +291,7 @@
 	    	});
 	    	
 	    	 $("#logo").click(function(){
-			     	location.href="*";    	 
+			     	location.href="mainpage";    	 
 			      });
 	    	function admin(){
 				location.href = "Admin";
