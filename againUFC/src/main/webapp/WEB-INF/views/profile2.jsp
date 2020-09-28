@@ -3,6 +3,7 @@
 <%@page import="java.util.Vector"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 	
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -205,18 +206,8 @@
 <body>
 
 
-<%
-String grade = "";
-String gradechk = (String)session.getAttribute("admin");
-	if(session.getAttribute("id") != null){
-		if(gradechk.equals("no")){
-			grade = "";
-		}else{
-			grade = "(관리자) ";
-		}
-	}
-%>
-	<%
+
+<%-- 	<%
 		Vector<playerBean> v = (Vector) request.getAttribute("memv");
 
 		String name = null;
@@ -239,36 +230,41 @@ String gradechk = (String)session.getAttribute("admin");
 		}
 	%>
 
-
+ --%>
 
 
 	<div id="wrap">
 		<header>
-			<% if(session.getAttribute("id") == null){ %>
-				
-            <% }else{%>
-            	<span id = "info"><%= grade %><%=session.getAttribute("name")%>님 환영합니다!</span>
-            <%   if(gradechk.equals("admin")){ %>
-				<button id = "admin" onclick = "admin()">경기 등록</button>
-				<button id = "admin" onclick = "admin2()">선수 등록</button>
-           	<% 	}else{ %>
-           		<button id = "mypage" onclick = "mypage()">마이 페이지</button>
-           	<%	} %>
-				<button id = "change" onclick = "change()">회원정보 수정</button>
-				<button id = "logout" onclick = "logout()">로그아웃</button>
-            <% } %>
+			   <c:choose>
+           		<c:when test="${empty name }">
+           			<button id = "login" onclick = "login()">로그인</button>
+					<button id = "join" onclick = "join()">회원가입</button>
+           		</c:when>
+           		<c:otherwise>
+           				<span id = "info">${admin}/${name}님 환영합니다!</span>	
+           			<c:if test="${admin eq '(관리자) '}">
+		          		<button class = "admin" onclick = "admin()">경기 등록</button>
+						<button class = "admin" onclick = "admin2()">선수 등록</button>
+					</c:if>	
+           		    <c:if test="${admin ne '(관리자) '}">
+	           			<button id = "mypage" onclick = "mypage()">마이 페이지</button>
+					</c:if>           	
+						<button id = "change" onclick = "change()">회원정보 수정</button>
+						<button id = "logout" onclick = "logout()">로그아웃</button>
+           		</c:otherwise>
+           </c:choose>
 		</header>
 		<nav>
 		<ul>
 			<li id="ranksite">Ranking</li>
             <li id="matchsite">Match</li>
-            <li><img src = "img/logo2.png" id = "logo"></li>
+            <li><img src = "resources/img/logo2.png" id = "logo"></li>
             <li id="shopsite">Shop</li>
             <li id="videosite">Video</li>
 		</ul>
 		</nav>
 		<div id="page1">
-			<img src="img/<%=name%>.jpg" id="grim1">
+			<img src="resources/img/${playername}.jpg" id="grim1">
 
 		</div>
 		<div id="page2">
@@ -276,37 +272,37 @@ String gradechk = (String)session.getAttribute("admin");
 			<br> <br>
 			<h1>프 로 필</h1>
 
-			<img src="img/<%=name%>.png" id="grim2">
+			<img src="resources/img/${playername}.png" id="grim2">
 			<div id="pro">
 				<table>
 					<tr>
 						<td>이 름 :</td>
-						<td class="tt"><%=name%></td>
+						<td class="tt">${playername}</td>
 					</tr>
 
 					<tr>
 						<td>나 이 :</td>
-						<td class="tt"><%=age%></td>
+						<td class="tt">${playerage}</td>
 					</tr>
 
 					<tr>
 						<td>국 적 :</td>
-						<td class="tt"><%=nationality%></td>
+						<td class="tt">${playernationlity}</td>
 					</tr>
 
 					<tr>
 						<td>높 이 :</td>
-						<td class="tt"><%=height%></td>
+						<td class="tt">${playerheight}</td>
 					</tr>
 
 					<tr>
 						<td>무 게 :</td>
-						<td class="tt"><%=weight%></td>
+						<td class="tt">${playerweight}</td>
 					</tr>
 
 					<tr>
 						<td>승/패 :</td>
-						<td class="tt"><%=win%>/<%=lose%></td>
+						<td class="tt">${playerwin}/${playerlose}</td>
 					</tr>
 
 				</table>
@@ -322,7 +318,7 @@ String gradechk = (String)session.getAttribute("admin");
 		
 	</div>	
 		<div id="bottom">
-			<img src="img/logo2.png"><br>
+			<img src="resources/img/logo2.png"><br>
 			<div class="bot1">Privacy Policy</div>
 			<div class="bot1">Terms of Use</div>
 			<br>
@@ -330,8 +326,8 @@ String gradechk = (String)session.getAttribute("admin");
 				대표:민병진 <br> 주소:부산광역시 부산진구<br>저작권 ⓒ2001-ufc판권소유
 			</div>
 			<p>
-				<img src="img/f.png" id="f"><img src="img/t.png" id="t"><img
-					src="img/u.png" id="u">
+				<img src="resources/img/f.png" id="f"><img src="resources/img/t.png" id="t"><img
+					src="resources/img/u.png" id="u">
 			</p>
 		</div>
 
@@ -350,19 +346,19 @@ String gradechk = (String)session.getAttribute("admin");
 		});
 		
 		 $("#logo").click(function(){
-		     	location.href="*.do";    	 
+		     	location.href="mainpage";    	 
 		 });
 		 
 	   	 $("#shop").click(function(){
-	    	location.href="topCart.do";    	 
+	    	location.href="topCart";    	 
 	     });
 	     
 	     $("#video").click(function(){
-	    	location.href="video.do";    	 
+	    	location.href="video";    	 
 	     });
 	   
 	     $("#rank").click(function(){
-	         location.href="rank.do";    	 
+	         location.href="rank";    	 
 	     });
 		
 	     $("#page1").on("mousewheel DOMMouseScroll",function(e){
@@ -405,37 +401,37 @@ String gradechk = (String)session.getAttribute("admin");
          });
 	     
 	     function logout(){
-	  		location.href = "Logout.do";
+	  		location.href = "gologout";
 	  	}
 	     function change(){
-	 		location.href = "Change.do";
+	 		location.href = "Change";
 	 	}
 	 	function mypage(){
-			location.href = "MemberMyPage.do";
+			location.href = "gomemberMyPage";
 		}
 	 	function admin(){
-			location.href = "Admin.do";
+			location.href = "goadmin";
 		}
 		function admin2(){
-			location.href = "Admin2.do";
+			location.href = "goadmin2";
 		}
 	 	
 	 	$("#ranksite").click(function(){
-			location.href="rank.do";
+			location.href="rank";
 			
 		});
 		
 		$("#matchsite").click(function(){
-			location.href = "Match.do";
+			location.href = "Match";
 		});
 			
 		$("#videosite").click(function(){
-			location.href="video.do";
+			location.href="video";
 		
 		});
 
 		$("#shopsite").click(function(){
-			location.href="topCart.do";
+			location.href="topCart";
 		
 		});
 		
