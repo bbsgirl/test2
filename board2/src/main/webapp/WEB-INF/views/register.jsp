@@ -19,7 +19,7 @@
 <body>
 regisert
 
-<form action="register" method="post">
+<form action="register" method="post" name="frm">
 	<table>
 		<tr>
 			<td>id</td><td><input type="text" name="id" id="idtext" placeholder="id"></td>
@@ -28,15 +28,15 @@ regisert
 			<td id="idck" colspan="2">1</td>
 		</tr>
 		<tr>
-			<td>pw</td><td><input type="text" name="pw"></td>
+			<td>pw</td><td><input type="text" name="pw" id="pwtext" placeholder="pw"></td>
 		</tr>
 		<tr>
-			<td>name</td><td><input type="text" name="name"></td>
+			<td>name</td><td><input type="text" name="name" id="nametext" placeholder="name"></td>
 		</tr>
 		<tr>
 			<td>gender</td>
 			<td>
-				<select name="gender"><!-- 셀렉트로  보낼때는 안에 value값이 넘어간다 -->
+				<select name="gender" id="genderselect"><!-- 셀렉트로  보낼때는 안에 value값이 넘어간다 -->
 					
 						<option value="f">f</option>
 						<option value="m">m</option>
@@ -45,14 +45,29 @@ regisert
 			</td>
 		</tr>
 		<tr>
-			<td><input type="submit" value="확인"></td><td><a href="main"><input type="button" value="취소"></a></td>
+			<td><input type="button" value="확인" onclick="on1()"></td><td><a href="main"><input type="button" value="취소"></a></td>
 		</tr>
 		
 	</table>
 </form>
 <script>
- 	var idck ="";
+function on1(){
+	if(frm.id.value.trim().length==0){
+		alert("아이디 필수")
+		$("#idtext").focus();
+	}else if(frm.pw.value.trim().length==0){
+		alert("비밀번호 필수")
+		$("#pwtext").focus();
+	}else if(frm.name.value.trim().length==0){
+		alert("이름 필수")
+		$("#nametext").focus();
+	}else{
+		frm.submit();
 
+		}
+	}
+
+ 	var idck ="";
 
  	//변수이름은 다 통일해야한다
 
@@ -66,7 +81,6 @@ regisert
 			success:function(m){
 
 				if(m.result == "yes"){
-						alert("사용할 수 있는 아이디입니다.");
 						$("#idck").text("사용할 수 있는 아이디입니다.");
 						$("#idck").css("color", "red");
 						$("#idck").css("visibility", "visible");
@@ -87,6 +101,11 @@ regisert
 			
 		});
 	});
+ 
+ 
+	
+ 
+	
 
 </script>
 
