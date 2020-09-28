@@ -18,6 +18,7 @@ ${id}님이 입장하였습니다.<br>
 <a href="goregister"><input type="button" value="회원가입"></a>
 <a href="gologin"><input type="button" value="로그인"></a>
 <a href="goinsert"><input type="button" value="게시판"></a>
+<a href="gologout"><input type="button" value="로그아웃"></a>
 <br>
 <table border="1">
 	<tr>
