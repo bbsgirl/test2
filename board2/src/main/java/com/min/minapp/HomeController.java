@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.view.RedirectView;
 
 /**
@@ -142,6 +143,22 @@ public class HomeController {
 		
 		return rv;
 	}
+	
+	@RequestMapping("/gologout")
+	public String gologout(SessionStatus status) {
+		System.out.println(status+"status¹¹Áö???");
+		
+		if(!status.isComplete()) 
+		{
+			status.setComplete();
+			
+		}
+		
+		return "redirect:main";
+	}
+	
+	
+	
 	
 	@RequestMapping("/goinsert")
 	public String insert() {
