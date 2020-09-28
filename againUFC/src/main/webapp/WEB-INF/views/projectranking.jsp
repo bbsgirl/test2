@@ -407,7 +407,7 @@
     <div id="wrap">
         <div id="ran">선수랭킹</div>
         
-        <form action="playersearch.do" name="formsearch">
+        <form action="playersearch" name="formsearch">
         	<div id ="search">
        			 <select name="grade" id="segrade">
 	       			 <option value="playerfly" name="sg">플라이급</option>
@@ -471,11 +471,11 @@
 		        	<tr class="ranNo">
 		        		<c:choose>
 			        			<c:when test="${status.index == 0 }">
-			        				<td>ChamPion</td><td class="pro"><a href="profile.do?age=${i.age}&name=${i.name}&nationality=${i.nationality}&height=${i.height }&weight=${i.weight }&win=${i.win }&lose=${i.lose}>">     ${i.name }<img src="resources/img/fly.png"></a></td>
+			        				<td>ChamPion</td><td class="pro"><a href="profile?age=${i.age}&name=${i.name}&nationality=${i.nationality}&height=${i.height }&weight=${i.weight }&win=${i.win }&lose=${i.lose}>">     ${i.name }<img src="resources/img/fly.png"></a></td>
 			        			</c:when>
 			        		
 				        		<c:when test="${status.index lt 6 }">
-				        			<td>${status.index}</td><td><a href="profile.do?age=${i.age}&name=${i.name}&nationality=${i.nationality}&height=${i.height }&weight=${i.weight }&win=${i.win }&lose=${i.lose}>"> ${i.name }</a></td><td></td>
+				        			<td>${status.index}</td><td><a href="profile?age=${i.age}&name=${i.name}&nationality=${i.nationality}&height=${i.height }&weight=${i.weight }&win=${i.win }&lose=${i.lose}>"> ${i.name }</a></td><td></td>
 				        		</c:when>
 		        		</c:choose>
 		        	</tr>
