@@ -512,7 +512,7 @@
             	$('#idchk').css("color", "indianred");
     			$("#idchk").css("visibility", "visible");
     			$("#idtext").css("border-color", "indianred");
-    			idchk = "no";
+    			 = "no";
             }
         });	
 	});
