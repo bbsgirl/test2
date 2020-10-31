@@ -1,22 +1,27 @@
 package com.min.myapp;
 
+import java.util.Date;
+
 public class boardinsertDto {
 	
 	private int idx;
 	private String id ;
 	private String content;
-	private String date;
+	private String gender;
+	private Date day;
 	
-	public boardinsertDto(int idx, String id, String content, String date) {
-		super();
-		this.idx = idx;
-		this.id = id;
-		this.content = content;
-		this.date = date;
-	}
 	
 	public boardinsertDto() {}
 	
+	
+	public boardinsertDto(int idx, String id, String content, String gender, Date day) {
+		
+		this.idx = idx;
+		this.id = id;
+		this.content = content;
+		this.gender = gender;
+		this.day = day;
+	}
 	public int getIdx() {
 		return idx;
 	}
@@ -35,12 +40,17 @@ public class boardinsertDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getDate() {
-		return date;
+	public String getGender() {
+		return gender;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
-	
+	public Date getDay() {
+		return day;
+	}
+	public void setDay(Date day) {
+		this.day = day;
+	}
 	
 }
