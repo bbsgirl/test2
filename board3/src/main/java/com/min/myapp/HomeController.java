@@ -167,6 +167,7 @@ public class HomeController {
 		}else {
 			model.addAttribute("C","다른아이디는 들어갈수없습니다.");
 			System.out.println("다른아이디라서 들어갈수없습니다.");
+			
 			return "redirect:main";
 		}
 		
