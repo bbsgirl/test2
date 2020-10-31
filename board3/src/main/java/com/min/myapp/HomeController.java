@@ -49,9 +49,22 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/main")
-	public String main() {
+	public String main(@RequestParam(value="pageNum", required=false, defaultValue = "1") String strNum, Model model) {
+		int pageNum = Integer.parseInt(strNum);
 		
+		int borderPerPage=3;
 		
+		boardinsertDto [] list = dao.getAll((pageNum-1)*borderPerPage, borderPerPage);
+		model.addAttribute("list",list);
+		
+		int count =dao.getCount();
+		int pageCount= count/borderPerPage;
+		if(count%borderPerPage > 0) {
+			pageCount++;
+		}
+		
+		model.addAttribute("pageCount",pageCount);
+		model.addAttribute("pageNum",pageNum);
 		
 		return "main";
 	}
@@ -90,13 +103,15 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/insert")
-	public String insert(boardinsertDto boardinsertDto, Model model) {
+	public RedirectView insert(boardinsertDto boardinsertDto,memberdto3 memberdto3) {
 		
-		dao.insert(boardinsertDto);
+		int result = dao.insert(boardinsertDto,memberdto3);
 		
-		model.addAttribute("m", boardinsertDto);
+		System.out.println("result:::"+result);
 		
-		return "redirect:main";
+		RedirectView rv = new RedirectView("main");//메인으로 간다
+		rv.setExposeModelAttributes(false);
+		return rv;
 	}
 	
 	
@@ -133,8 +148,36 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping("/gomodify")
+	public String modify(@RequestParam("id1") String id ,boardinsertDto boardinsertDto, Model model) {
+		
+		
+		//&id1=${id}를 파람으로 받아서 컨트롤러에 사용하였다
+		
+		System.out.println("id!"+id);
+		
+		
+		System.out.println("idx::::"+boardinsertDto.getIdx());
+		System.out.println("id::::"+boardinsertDto.getId());
+		
+		if(id.equals(boardinsertDto.getId())) {
+			model.addAttribute("bean",boardinsertDto);
+			System.out.println("같은아이디입니다");
+		}else {
+			System.out.println("다른아이디라서 들어갈수없습니다.");
+			return "redirect:main";
+		}
+		
+		return "modify";
+	}
 	
-	
+	@RequestMapping("modify")
+	public String modify(boardinsertDto bean, Model model) {
+		
+		int result=dao.modify(bean);
+		
+		return "redirect:main";
+	}
 	
 	
 	
