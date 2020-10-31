@@ -12,7 +12,7 @@
 	<table>
 		
 		<tr>
-			<td><input type="text" value="${bean.idx}"></td><td><input type="text" value="${bean.content}"></td>
+			<td><input type="text" value="${b.idx}"></td><td><input type="text" value="${b.content}"></td>
 		</tr>
 		
 		<tr>
