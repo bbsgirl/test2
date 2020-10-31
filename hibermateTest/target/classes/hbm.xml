@@ -1,0 +1,17 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "com.min.myapp.Dummy" table = "Dummy4">      
+      <meta attribute = "class-description">
+         This class contains the dummy detail. 
+      </meta>      
+      <id name = "idx" type = "int" column = "idx"><!--프라이머리 키만 id태그 가능  -->
+         <generator class="native"/>
+      </id>      
+      <property name = "pw" column = "pw" type = "string"/><!--프라이머리키아니면 프로퍼티스로 사용  -->
+      <property name = "content" column = "content" type = "string"/>
+   </class>
+</hibernate-mapping>
