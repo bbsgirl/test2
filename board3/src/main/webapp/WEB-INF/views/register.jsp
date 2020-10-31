@@ -183,7 +183,7 @@
 				url:"registerck",
 				data: id,
 				dataType:"json",
-				success:function(args){
+				success:function(args){/*컨트롤러의 값이 yes or no  */
 					
 					if(args.result == "yes"){
 	            		if($("#idtext").val().trim().length==0){
@@ -217,7 +217,7 @@
 			});
 		});
 
-		function on1(){
+		function on1(){/* 클릭 */
 	 	 	
 			 if(idck == ""|| idck == "no"){
 				alert("아이디 입력을 확인바랍니다");
