@@ -40,6 +40,14 @@ public class boardDao3 {
 	@Value("#{sql['board3.modify']}")
 	private String modify;
 	
+	@Value("#{sql['board3.delete']}")
+	private String delete;
+	
+	public int delete(boardinsertDto bean) {
+		int result= jdbcTmp.update(delete, bean.getIdx());
+		return result;
+	}
+	
 	public int modify(boardinsertDto bean) {
 		
 		int result = jdbcTmp.update(modify, bean.getContent(),bean.getIdx());
