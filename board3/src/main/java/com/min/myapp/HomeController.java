@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.view.RedirectView;
 
 /**
@@ -161,9 +162,10 @@ public class HomeController {
 		System.out.println("id::::"+boardinsertDto.getId());
 		
 		if(id.equals(boardinsertDto.getId())) {
-			model.addAttribute("bean",boardinsertDto);
+			model.addAttribute("b",boardinsertDto);
 			System.out.println("같은아이디입니다");
 		}else {
+			model.addAttribute("C","다른아이디는 들어갈수없습니다.");
 			System.out.println("다른아이디라서 들어갈수없습니다.");
 			return "redirect:main";
 		}
@@ -180,10 +182,37 @@ public class HomeController {
 	}
 	
 	
+	@RequestMapping("gologout")
+	public String logout(SessionStatus status) {
+		
+		System.out.println("status"+status);
+		
+		if(!status.isComplete()) {
+			System.out.println("로그아웃되었습니다.");
+			
+		status.setComplete();
+			
+		}
+		
+		return "redirect:main";
+		
+	}
 	
 	
-	
-	
+	@RequestMapping("godelete")
+	public String delete(@RequestParam("id1")String id, boardinsertDto bean,Model model) {
+		
+		if(id.equals(bean.getId())) {
+		
+		int result= dao.delete(bean);
+		}else {
+			System.out.println("삭제실패");
+			return "redirect:main";
+		}
+		
+		
+		return "redirect:main";
+	}
 	
 	
 	
