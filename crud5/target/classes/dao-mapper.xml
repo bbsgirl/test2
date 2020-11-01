@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.min">
+    <select id="selectTest" resultType="int">
+        SELECT count(*) FROM dummy3
+    </select>
+    <select id="selectTest2" resultType="com.min.myapp.DummyDTO">
+        SELECT * FROM dummy3 where idx=#{idx}
+    </select>
+    <select id="selectTest3" resultType="com.min.myapp.DummyDTO">
+        SELECT * FROM dummy3 where idx=#{idx} and content=#{content}
+    </select>
+    <select id="selectTest4" resultType="com.min.myapp.DummyDTO">
+        SELECT * FROM dummy3
+    </select>
+    <insert id="insertTest">
+    	insert into dummy3 VALUES (null,#{content})
+    </insert>
+    <delete id="deleteTest">
+    	delete from dummy3 where idx = #{idx}
+    </delete>
+    <update id="updateTest">
+    	update dummy3 set content = #{content} where idx = #{idx}
+    </update>
+</mapper>
