@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+    
+    <resultMap type="com.spring.board.vo.MemberVo" id="memberVo">
+    	<result property="id" 		column="USER_ID"/>
+    	<result property="pw" 		column="USER_PW"/>
+    	<result property="name" 	column="USER_NAME"/>
+    	<result property="phone1" 	column="USER_PHONE1"/>
+    	<result property="phone2" 	column="USER_PHONE2"/>
+    	<result property="phone3" 	column="USER_PHONE3"/>
+    	<result property="postno" 	column="USER_ADDR1"/>
+    	<result property="address" 	column="USER_ADDR2"/>
+    	<result property="company" 	column="USER_COMPANY"/>
+    </resultMap>
+    <resultMap type="com.spring.board.vo.PnumberVo" id="pnumberVo">
+    	<result property="PhNumber" column="PH_NUMBER"/>
+    	<result property="idx" 		column="IDX"/>
+    </resultMap>
+   
+    <resultMap type="com.spring.board.vo.pinkBoardVo" id="pinkBoardVo">
+    	<result property="boardIdx" 		column="board_idx"/>
+    	<result property="boardId" 			column="board_id"/>
+    	<result property="boardComment" 	column="board_comment"/>
+    	<result property="boardTime" 	    column="board_time"/>
+    </resultMap>
+    
+     <select id="pinkList" parameterType="com.spring.board.vo.pinkBoardVo" resultMap="pinkBoardVo">
+	 	SELECT 
+	 		board_idx
+	 		,board_id
+	 		,board_comment
+	 		,NUMROW
+	 		,board_time
+	 		,TOTAL_CNT
+	 		
+	 	FROM
+	 		(
+	 			SELECT
+	 				board_idx
+	 				,board_id
+	 				,board_comment
+	 				,ROW_NUMBER() OVER(ORDER BY board_idx DESC ) AS NUMROW
+	 				,board_time
+	 				,COUNT(*) OVER() AS TOTAL_CNT
+	 			FROM
+	 				PINKBOARD
+	 		)
+	 	PINKBOARD
+	 	 WHERE NUMROW BETWEEN (#{pageNo}-1)*5 + 1 AND(#{pageNo})*5 
+	 		
+	 </select> 
+	 <select id="PinkCnt" parameterType="Integer" resultType="Integer"> 
+     		SELECT
+     				COUNT(*) AS TOTAL_CNT
+     		FROM
+     				PINKBOARD		
+     </select>
+  	 <select id="pinkWrite" parameterType="com.spring.board.vo.pinkBoardVo" resultMap="pinkBoardVo"> 
+     		INSERT INTO
+     		PINKBOARD
+     		(
+     			board_idx
+     			,board_id
+     			,board_comment
+     			,board_time
+     		
+     		)
+     		VALUES
+     		(
+     			(SELECT NVL(MAX(board_idx),0)+1
+     			FROM PINKBOARD
+     			)
+     			,#{boardId}
+     			,#{boardComment}
+     			,TO_CHAR(SYSDATE)
+     		)
+     </select>
+      
+    <select id="pinkJoin" parameterType="com.spring.board.vo.MemberVo" resultMap="memberVo">
+    	INSERT INTO
+    	USER_INFO
+    	(
+			USER_ID
+			,USER_PW
+			,USER_NAME
+			,USER_PHONE1
+			,USER_PHONE2
+			,USER_PHONE3
+			,USER_ADDR1
+			,USER_ADDR2
+			,USER_COMPANY
+			,CREATOR
+			,CREATE_TIME
+			,MODIFIER
+			,MODIFIED_TIME
+    	)
+    	VALUES(
+    			#{id}
+    			,#{pw}
+    			,#{name}
+    			,#{phone1}
+    			,#{phone2}
+    			,#{phone3}
+    			,#{postno}
+    			,#{address}
+    			,#{company}
+    			,'SYSTEM'
+	       		,TO_CHAR(SYSDATE)
+	        	,'SYSTEM'
+	        	,TO_CHAR(SYSDATE)
+    		  )	
+   
+     </select>
+     
+     <select id="pinkIdck" parameterType="com.spring.board.vo.MemberVo" resultType="integer">
+	 	SELECT 
+	 		COUNT(*)
+	 	FROM
+	 		USER_INFO
+	 	WHERE USER_ID = #{id}
+	 </select>    
+	 <select id="selectNumber" parameterType="com.spring.board.vo.PnumberVo" resultMap="pnumberVo">
+	 	SELECT 
+	 		*
+	 	FROM
+	 		PHONENUMBER
+	 </select> 
+	  <select id="pinkLogin1" parameterType="com.spring.board.vo.MemberVo" resultType="integer">
+	 	SELECT 
+	 		COUNT(*)
+	 	FROM
+	 		USER_INFO
+	 	WHERE USER_ID = #{id}
+	 </select> 
+	 <select id="pinkLogin2" parameterType="com.spring.board.vo.MemberVo" resultType="integer">
+	 	SELECT 
+	 		COUNT(*)
+	 	FROM
+	 		USER_INFO
+	 	WHERE USER_ID = #{id}
+	 	AND USER_PW = #{pw}
+	 </select> 
+	 
+	 <select id="pinkDelete" parameterType="Integer" resultType="Integer">
+	 	DELETE
+	 	FROM PINKBOARD
+	 	WHERE board_idx = #{boardIdx}
+	 	
+	 </select>
+	 <select id="pinkModify" parameterType="com.spring.board.vo.pinkBoardVo" >
+	 	UPDATE
+	 	PINKBOARD
+	 	SET board_comment= #{boardComment}
+	 	WHERE board_idx= #{boardIdx}
+		
+	 	
+	 </select>
+	 
+    
+</mapper>
