@@ -218,7 +218,7 @@
 									<tr>
 										<td><a href="/board/${id}/pinkGoSe.do">MovieList</a></td>
 										
-										<td >Total : ${totalCnt }</td>
+										<td >Total : ${totalCnt}</td>
 									</tr>
 									<tr id="tr1">
 										<td class="a">번호</td>
