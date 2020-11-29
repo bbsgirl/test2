@@ -780,7 +780,7 @@
                     <div class="title1">
 	              
 	                    <div class="home">
-	                              <form action="/board/pinkGoBoard.do" >
+	                              <form action="/pinkmovie/pinkGoBoard.do" >
 		                                 <input type="hidden" id="session" name="sessionId" value="${sessionId}">
 				                         <input type="submit" id="home" value="요청영상">
 		                           </form>
@@ -795,7 +795,7 @@
 
                          <div class="titles1">
                                 <div id="logout">
-                                      <a href="/board/pinkLogOut.do"><input type="button" value="로그아웃" id="logout"></a>
+                                      <a href="/pinkmovie/pinkLogOut.do"><input type="button" value="로그아웃" id="logout"></a>
                                 </div>
                          </div>
                     </div>
