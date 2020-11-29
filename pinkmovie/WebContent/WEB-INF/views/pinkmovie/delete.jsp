@@ -10,7 +10,7 @@
 <body>
 <script>
 	alert("${msg}");
-	location.href="/board/pinkGoBoard.do";
+	location.href="/pinkmovie/pinkGoBoard.do";
 
 </script>
 
