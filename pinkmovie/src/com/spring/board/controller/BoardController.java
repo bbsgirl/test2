@@ -68,19 +68,18 @@ public class BoardController {
 		
 		return "pinkmovie/pinkLogin";
 	}
-	@RequestMapping(value = "/pinkmovie/pinkJoin.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/pinkmovie/pinkJoin.do", produces="text/plain;charset=UTF-8")
 	public String pinkJoin(MemberVo memberVo, Model model) throws Exception{
+		System.out.println("memberVo.getId():::::WWW"+memberVo.getId());
 		
-		int result = boardService.pinkJoin(memberVo); 
-		
-		if(result >0) {
-			
+		if(memberVo.getId() != null) {
+			boardService.pinkJoin(memberVo); 
 			model.addAttribute("msg",memberVo.getId()+"님 회원가입 되었습니다");
-			return "pinkmovie/GotoMain";
+			
 			
 		}
 		
-		return "pinkmovie/pinkMain";
+		return "pinkmovie/GotoMain";
 	}
 	@RequestMapping(value = "/pinkmovie/pinkLogin.do", method = RequestMethod.POST)
 	public String pinkLogin(@RequestParam("id")String id,@RequestParam("pw")String pw,MemberVo memberVo , Model model) throws Exception{
