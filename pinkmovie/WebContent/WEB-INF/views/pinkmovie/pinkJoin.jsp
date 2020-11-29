@@ -1,14 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/common/common.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+ 
 	<style>
-	
-	
 	.phonetext{
 		width: 45px;
 	}
@@ -52,11 +51,11 @@
 </head>
 <body>
 
-<form action="/board/pinkJoin.do" method="post" name="frm">
+<form action="/pinkmovie/pinkJoin.do" method="post" name="frm">
 <table align="center">
 	<tr>
 		<td align="left">
-			<a href="/board/pinkMain.do">Main</a>
+			<a href="/pinkmovie/pinkMain.do">Main</a>
 		</td>
 	</tr>
 
@@ -130,7 +129,7 @@
 </table>
 </form>
 
-<script type="text/javascript" >
+<script >
 /*y는 안되는거 n는 되는거  */
 
 var idck = "";
@@ -174,7 +173,7 @@ function ck() {
 		
 	 /* 치는아이디가 나온다 */ 
 		$j.ajax({
-			url: "/board/pinkIdck.do",
+			url: "/pinkmovie/pinkIdck.do",
 			dataType: "json",
 			type: "POST",
 			data: id,
