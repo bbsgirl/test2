@@ -17,7 +17,7 @@
 			var param = $frm.serialize();
 			
 			$j.ajax({
-			    url : "/board/${idx}/pinkModify.do",
+			    url : "/pinkmovie/${idx}/pinkModify.do",
 			    dataType: "json", //리턴형식이라 생각하면된다
 			    type: "POST",
 			    data : param,
@@ -28,7 +28,7 @@
 					
 					alert("메세지:"+data.success);
 							/* ?pageNo= */
-					location.href = "/board/pinkGoBoard.do"; /*여기에 페이지가 있었다  */
+					location.href = "/pinkmovie/pinkGoBoard.do"; /*여기에 페이지가 있었다  */
 			    },
 			    error: function (jqXHR, textStatus, errorThrown)
 			    
@@ -84,7 +84,7 @@
 		</tr>
 		<tr>
 			<td align="right">
-				<a href="/board/pinkGoBoard.do">List</a>
+				<a href="/pinkmovie/pinkGoBoard.do">List</a>
 			</td>
 		</tr>
 		
