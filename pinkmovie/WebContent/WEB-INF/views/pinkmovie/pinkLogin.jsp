@@ -18,7 +18,7 @@
 
 <body>
 
-<form action="/board/pinkLogin.do" method="post" name="frm">
+<form action="/pinkmovie/pinkLogin.do" method="post" name="frm">
 	<table align="center">
 			<tr>
 				<td>
@@ -34,7 +34,7 @@
 				</td>	
 			</tr>	
 				<tr>
-						<td align="right"><input type="button" onclick="on1()" value="login" class="p"><a href="/board/boardList.do"><input type="button" value="cancel" class="p"></a></td>	
+						<td align="right"><input type="button" onclick="on1()" value="login" class="p"><a href="/pinkmovie/pinkMain.do"><input type="button" value="cancel" class="p"></a></td>	
 				</tr>
 	</table>
 </form>
