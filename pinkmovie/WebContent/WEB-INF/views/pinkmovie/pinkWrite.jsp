@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-      <%@include file="/WEB-INF/views/common/common.jsp"%>
+<%@include file="/WEB-INF/views/common/common.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,7 @@
 
 
 </script>
-<form action="/board/pinkWriteAction.do">
+<form action="/pinkmovie/pinkWriteAction.do">
 	<table id="totaltb" align="center">
 		
 		<tr>
@@ -41,7 +41,7 @@
 		</tr>
 		<tr>
 			<td align="right">
-				<a href="/board/boardList.do">List</a>
+				<a href="/pinkmovie/boardList.do">List</a>
 			</td>
 			<td align="right">
 				<input type="submit"  value="작성">
