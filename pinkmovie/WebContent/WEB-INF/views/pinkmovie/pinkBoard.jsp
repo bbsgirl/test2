@@ -235,8 +235,8 @@
 										<td>${pink.boardId}</td>
 										<td>${pink.boardComment}</td>
 										<td>${pink.boardTime}</td>
-										<td><a href="/board/pinkDelete.do?delete=${pink.boardIdx}&boardId=${pink.boardId}&sessionId=${id}">delete</a></td>
-										<td><a href="/board/pinkGoModify.do?boardIdx=${pink.boardIdx}&boardId=${pink.boardId}&boardComment=${pink.boardComment}&sessionId=${id}">modify</a></td>
+										<td><a href="/pinkmovie/pinkDelete.do?delete=${pink.boardIdx}&boardId=${pink.boardId}&sessionId=${id}">delete</a></td>
+										<td><a href="/pinkmovie/pinkGoModify.do?boardIdx=${pink.boardIdx}&boardId=${pink.boardId}&boardComment=${pink.boardComment}&sessionId=${id}">modify</a></td>
 										<td></td>
 									</tr>	
 									</c:forEach>
@@ -249,7 +249,7 @@
 													</c:when>
 													
 													<c:otherwise>
-														<a href="/board/pinkGoBoard.do?pageNo=${i}">[${i}]</a>
+														<a href="/pinkmovie/pinkGoBoard.do?pageNo=${i}">[${i}]</a>
 													</c:otherwise>						
 												</c:choose>
 												
@@ -269,7 +269,7 @@
 <script>
 					function logout(){
 						
-						location.href="/board/pinkLogOut.do";
+						location.href="/pinkmovie/pinkLogOut.do";
 					}
 			        	
 										
@@ -294,7 +294,7 @@
 						var param = $frm.serialize();//serialize는 폼의 객체를 한번에 받을수가 있다.
 						
 						$j.ajax({
-						    url : "/board/pinkWriteAction.do",// 보내는곳
+						    url : "/pinkmovie/pinkWriteAction.do",// 보내는곳
 						    dataType: "json", //리턴형식이라 생각하면된다 주고 받을 수 있는 자료형은 숫자, 문자열, boolean, 배열, 객체이며   기본 데이터 배열은 KEY와 VALUE로 구성되어 있으며 중괄호로 감싼다.
 
 						    type: "POST",
@@ -306,7 +306,7 @@
 								
 								alert("메세지:"+data.success);
 										/* ?pageNo= */
-								location.href = "/board/pinkGoBoard.do"; /*여기에 페이지가 있었다  */
+								location.href = "/pinkmovie/pinkGoBoard.do"; /*여기에 페이지가 있었다  */
 						    },
 						    error: function (jqXHR, textStatus, errorThrown)
 						    
