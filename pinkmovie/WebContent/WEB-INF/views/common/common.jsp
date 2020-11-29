@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 </head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/resources/js/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	var $j = jQuery.noConflict();
