@@ -61,27 +61,7 @@
       
         
         }
-        #txt{
-            width: 150px;
-            height: 37px;
-            font-size: 17px;
-            border-radius: 10px;
-            opacity: 0.5;
-            float:left;
-          
-           
-        }
-        #chec{
-           
-            width: 45px;
-            height: 38px;
-            border-radius: 10px;
-            opacity: 0.5;
-            float: left;
-            
-        }
-       
-
+  
         .titles1 {
 
             width: 100px;
@@ -172,22 +152,6 @@
 /*            overflow: hidden;*/
             position: absolute;
         }
-        
-          .rcbox{
-            width: 310px;
-            height: 300px;
-            left: 18%;/*min 50% 잊지말기*/
-            top: 30%;
-            padding-top: 20px;
-            border: 1px solid red;
-            display: none; 
-            position: fixed;
-            background-color: black;
-            z-index: 100;
-            border-radius: 10%;
-            
-        }
-        
         @media(min-width:500px){
             
             /*차태현 얼굴하고잎으면 마진주면된다*/
@@ -248,9 +212,7 @@
             width: 400px;
            
             }
-            .rcbox{
-            left: 30%;
-            }
+        
             .titles1 {
 
             width: 100px;
@@ -271,10 +233,7 @@
                 top: 0;
                 
             }
-            #txt{
-            width: 200px;
-           
-             }
+         
              .search{
             width: 500px;
             
@@ -285,10 +244,7 @@
                 top: 0;
                
             }
-               #txt{
-            width: 250px;
           
-            }   
             .titles1 {
 
             width: 100px;
@@ -308,10 +264,7 @@
                 top: 0;
                 
             }
-             #txt{
-            width: 350px;
-           
-             }
+        
              .titles1 {
 
             width: 100px;
@@ -331,17 +284,12 @@
                 top: 0;
                
             }
-            #txt{
-            width: 400px;
-           
-             }
+        
             .search{
             width: 500px;
            
             }
-            .rcbox{
-            left: 40%;
-            }
+        
             .titles1 {
 
             width: 100px;
@@ -1073,11 +1021,6 @@
                     
                 </div>
                 
-                
-          
-           
-           
-           
            
 <!--
             <p></p>
@@ -1100,87 +1043,46 @@
             $j(".row1").stop().animate({
                     width:"160px"
                 },500);
-
                 
             });
-             
-         
          $j(".aboxtitle1").stop().mouseleave(function(){
                 $j(".row1").animate({
                     width:"0px"
                 },500);
-             
-         });
-         
+        	 });
+
          $j(".bboxtitle1").mouseenter(function(){
-            $j(".row2").animate({
+            	$j(".row2").stop().animate({
                     width:"160px"
                 },500);
-                 
-             
-         });
+	         });
          $j(".bboxtitle1").mouseleave(function(){
-                $j(".row2").animate({
+             	$j(".row2").stop().animate({
                     width:"0px"
                 },500);
-                        
-         });
-         
+	         });
          $j(".cboxtitle1").mouseenter(function(){
-            $j(".row3").animate({
+            	$j(".row3").stop().animate({
                     width:"160px"
                 },500);
-                
-                     
-         });
+	         });
          $j(".cboxtitle1").mouseleave(function(){
-                $j(".row3").animate({
+                $j(".row3").stop().animate({
                     width:"0px"
                 },500) ;
-                    
-            });    
-             
-        
-         
+             });    
          $j(".dboxtitle1").mouseenter(function(){
-            $j(".row4").animate({
+            	$j(".row4").stop().animate({
                     width:"160px"
                 },500);
-                
-            });
-             
-        
+             });
          $j(".dboxtitle1").mouseleave(function(){
-                $j(".row4").animate({
+                $j(".row4").stop().animate({
                     width:"0px"
                 },500);
-         
-         });
-         
-         
-         
-         
-         
-         
-         
-       
-         
-         $j("#chec").click(function(event){
-             var str =$j("#txt").val();
-             alert(str);
-             
-             
-         });
-         
-         
-         
-         $j("#txt").keypress(function(event){
-             if(event.which==13){
-                    var str=$j("#txt").val();
-                 alert(str);
-             }
-         });
-         
+	         });
+
+   
          $j(".u1").mouseenter(function(){
              $j(".boxmovie1").css("display","block");
              
@@ -1191,20 +1093,7 @@
              
              
          });
-         
-          
-          $j(".home").click(function(){
-        	   $j(".rcbox").slideDown();
-               $j(".blackbox").fadeIn();
-             
-          });
-          
-          $j("#reidcencel").click(function(){
-        	  $j(".rcbox").stop().slideUp();
-              $j(".blackbox").stop().fadeOut();
-		});
-          
-          
+     
           
          
 //            for( var i=0 ;i<12;i++ ){
@@ -1233,6 +1122,7 @@
            
              
       */
+      //밑에 배너들 크기조절
          $j(".dboxgroup1").children().stop().mouseenter(function(){
               $j(this).css("transform","scale(1.1)");
             }); 
@@ -1240,9 +1130,8 @@
               $j(this).css("transform","scale(0.9)");
            }); 
            
-        //this라는 것을 내가 지정하는것!!!         
-       
-            
+        //this라는 것을 내가 지정하는것!!!   
+        //위에 로고      
         $j(".logo1").animate({
               height:"97px",
                 top:"0"
@@ -1279,7 +1168,7 @@
              });
          });
          
-          $j(".right1").click(function(){
+         $j(".right1").click(function(){
               var f=$j(".dboxgroup1").children().eq(11).detach();
               var s=$j(".dboxgroup1").children().eq(10).detach();
               var t=$j(".dboxgroup1").children().eq(9).detach();
@@ -1295,8 +1184,6 @@
              },1000);
          });
             
-        
-        
          
           //모든 스크롤  다 적용
         var isDown=false; 
@@ -1323,10 +1210,10 @@
                 return;
 //            alert("hihihihihih");
             }
-            e.preventDefault();
+            e.preventDefault();//좀더 실해하겠금하는 함수있다
             var x =e.pageX;
-            var walk=(x-startX);
-            $j(".aboxgroup1").scrollLeft(scrollLeft-walk);
+            var walk=(x-startX);//이동하는거리
+            $j(".aboxgroup1").scrollLeft(scrollLeft-walk);// 스크롤레프트 좌우이동하는법
 //          $j("p").eq(2).text("마우스 무빙칠때 위치" +x);
         });
         $j(".aboxgroup1").mouseup(function(e){
@@ -1370,8 +1257,7 @@
             startY= e.pageY;
             scrollLeft=$j(".bboxgroup1").scrollLeft(); 
 //            $j("p").eq(0).text("마우스의X 위치 : "+startX); 
-$j("p").eq(0).text("마우스의Y 위치 : "+startY);
-            
+			$j("p").eq(0).text("마우스의Y 위치 : "+startY);
             $j("p").eq(1).text("스크롤의 위치 : "+scrollLeft);
             
             
@@ -1457,7 +1343,7 @@ $j("p").eq(0).text("마우스의Y 위치 : "+startY);
 
           $j(".cboxgroup1").stop().mousemove(function(e){
 
-             startX = e.pageX;
+            startX = e.pageX;
             startY= e.pageY;
             scrollLeft=$j(".cboxgroup1").scrollLeft(); 
             $j("p").eq(0).text("aaa : "+startX); 
@@ -1477,7 +1363,7 @@ $j("p").eq(0).text("마우스의Y 위치 : "+startY);
        });
           
           function no(){
-        	  location.href="/board/pinkBoard.do";
+        	  location.href="/pinkmoive/pinkBoard.do";
           }
     </script>
     
