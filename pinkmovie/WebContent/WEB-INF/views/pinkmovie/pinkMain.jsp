@@ -6,7 +6,7 @@
 <head>
    <meta charset="UTF-8">
     <title>Document</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
     <style>
         * {
             margin: 0;
@@ -758,15 +758,15 @@
                         		<div id ="session">${id}님이 입장하셨습니다.</div>
                         	</div>
                         	 <div class="logout">
-	                            <a href="/board/pinkLogOut.do"><input type="button" value="로그아웃" id="logout"></a>
+	                            <a href="/pinkmovie/pinkLogOut.do"><input type="button" value="로그아웃" id="logout"></a>
 	                        </div>
                         </c:when>
                  		<c:when test="${empty id}">
 	                 		<div class="insert">
-	                 			<a href="/board/pinkGoJoin.do"><input type="button" value="회원가입" id="insert"></a>
+	                 			<a href="/pinkmovie/pinkGoJoin.do"><input type="button" value="회원가입" id="insert"></a>
 	                 		</div>
 	                        <div class="login">
-	                            <a href="/board/pinkGoLogin.do"><input type="button" value="로그인" id="login"></a>
+	                            <a href="/pinkmovie/pinkGoLogin.do"><input type="button" value="로그인" id="login"></a>
 	                        </div>
                         </c:when>
                     </c:choose>    
@@ -919,7 +919,7 @@
 //스크롤로 창띄우기
         $(window).on("scroll", function() {
 
-            var sc_top = $(this).scrollTop();
+            var sc_top = $j(this).scrollTop();
             if (sc_top > 950) {
                 $(".bidmid2,.premovie").stop().fadeIn(2000, function() {
                 
@@ -960,15 +960,10 @@
          function goPage2(){
 			alert("page");
 
-			location.href="/board/${id}/pinkGoSe.do";
-				
-
+			location.href="/pinkmovie/${id}/pinkGoSe.do";
              }
         
 </script>
-
-
 </body>
-
 </html>
 		      
