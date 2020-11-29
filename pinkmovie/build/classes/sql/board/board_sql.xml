@@ -42,7 +42,7 @@
 	 				,board_comment
 	 				,ROW_NUMBER() OVER(ORDER BY board_idx DESC ) AS NUMROW
 	 				,board_time
-	 				,COUNT(*) OVER() AS TOTAL_CNT
+	 				,COUNT(*) OVER() AS TOTAL_CNT<!--전체행카운터  -->
 	 			FROM
 	 				PINKBOARD
 	 		)
